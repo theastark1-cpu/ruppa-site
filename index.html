@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ruppa — The Health Brand for Dogs</title>
+  <meta name="description" content="Ruppa is building the future of canine health — dental, calming, and premium chews. Not a pet brand. A health brand.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green: #1B4D3E;
+      --green-light: #2A6B56;
+      --cream: #F5F0E8;
+      --cream-dark: #E8E0D4;
+      --white: #FFFFFF;
+      --text: #1A1A1A;
+      --text-muted: #5C5C5C;
+      --border: #D4CFC7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Typography ── */
+    .serif { font-family: 'Playfair Display', Georgia, serif; }
+    h1, h2, h3, .stat-number, .tagline, .nav-brand { font-family: 'Playfair Display', Georgia, serif; }
+
+    h1 {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-weight: 600;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+    }
+
+    h3 {
+      font-size: 1.4rem;
+      font-weight: 600;
+      line-height: 1.3;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 2rem;
+    }
+
+    section {
+      padding: 6rem 0;
+    }
+
+    /* ── Nav ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 0;
+      background: rgba(245, 240, 232, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(27, 77, 62, 0.08);
+    }
+
+    nav .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: 0.04em;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      font-weight: 400;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--green); }
+
+    /* ── Hero ── */
+    .hero {
+      padding-top: 10rem;
+      padding-bottom: 8rem;
+      text-align: center;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      color: var(--green);
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      font-weight: 400;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 3rem;
+      line-height: 1.7;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.6rem 1.4rem;
+      border: 1px solid var(--green);
+      color: var(--green);
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-radius: 2px;
+    }
+
+    /* ── Positioning ── */
+    .positioning {
+      background: var(--green);
+      color: var(--cream);
+      text-align: center;
+      padding: 5rem 0;
+    }
+
+    .positioning .tagline {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-style: italic;
+      font-weight: 400;
+      max-width: 700px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.5;
+    }
+
+    .positioning .attribution {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.6);
+    }
+
+    /* ── Stats ── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: clamp(2.5rem, 5vw, 3.5rem);
+      font-weight: 700;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      max-width: 220px;
+      margin: 0 auto;
+    }
+
+    /* ── Products ── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-header h2 {
+      color: var(--green);
+      margin-bottom: 0.75rem;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2.5rem;
+    }
+
+    .product-card {
+      background: var(--white);
+      border-radius: 4px;
+      padding: 2.5rem 2rem;
+      border: 1px solid var(--border);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 40px rgba(27, 77, 62, 0.08);
+    }
+
+    .product-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--cream);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1.5rem;
+      font-size: 1.3rem;
+    }
+
+    .product-card h3 {
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-card .product-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .product-card .product-desc {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+
+    .product-card .product-items {
+      list-style: none;
+      font-size: 0.85rem;
+      color: var(--text);
+    }
+
+    .product-card .product-items li {
+      padding: 0.35rem 0;
+      border-bottom: 1px solid var(--cream-dark);
+    }
+
+    .product-card .product-items li:last-child {
+      border-bottom: none;
+    }
+
+    /* ── Moat ── */
+    .moat-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 3rem;
+    }
+
+    .moat-item {
+      display: flex;
+      gap: 1.25rem;
+    }
+
+    .moat-number {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--green);
+      flex-shrink: 0;
+      width: 40px;
+    }
+
+    .moat-item h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .moat-item p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ── CTA ── */
+    .cta {
+      background: var(--green);
+      color: var(--cream);
+      text-align: center;
+      padding: 6rem 0;
+    }
+
+    .cta h2 {
+      margin-bottom: 1rem;
+    }
+
+    .cta p {
+      font-size: 1.1rem;
+      color: rgba(245, 240, 232, 0.75);
+      max-width: 500px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.7;
+    }
+
+    .signup-form {
+      display: flex;
+      gap: 0.75rem;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .signup-form input {
+      flex: 1;
+      padding: 0.9rem 1.2rem;
+      border: 1px solid rgba(245, 240, 232, 0.3);
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--cream);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .signup-form input::placeholder { color: rgba(245, 240, 232, 0.4); }
+    .signup-form input:focus { border-color: var(--cream); }
+
+    .signup-form button {
+      padding: 0.9rem 1.8rem;
+      background: var(--cream);
+      color: var(--green);
+      border: none;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 500;
+      letter-spacing: 0.03em;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.2s;
+    }
+
+    .signup-form button:hover { background: var(--white); }
+
+    /* ── Footer ── */
+    footer {
+      padding: 3rem 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    footer .footer-brand {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+
+    footer .footer-tagline {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    footer .footer-bottom {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      section { padding: 4rem 0; }
+      .hero { padding-top: 7rem; padding-bottom: 5rem; }
+
+      .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .product-grid { grid-template-columns: 1fr; }
+      .moat-grid { grid-template-columns: 1fr; }
+
+      .signup-form { flex-direction: column; }
+
+      .nav-links { display: none; }
+    }
+
+    @media (min-width: 769px) and (max-width: 1024px) {
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .product-grid .product-card:last-child {
+        grid-column: 1 / -1;
+        max-width: 400px;
+        justify-self: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Nav ── -->
+  <nav>
+    <div class="container">
+      <a href="#" class="nav-brand">RUPPA</a>
+      <ul class="nav-links">
+        <li><a href="#products">Products</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#waitlist">Waitlist</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Hero ── -->
+  <section class="hero" id="home">
+    <div class="container">
+      <p class="hero-eyebrow">Now launching</p>
+      <h1>The health brand <em>your dog deserves.</em></h1>
+      <p class="hero-subtitle">
+        Ruppa is building the future of canine health — starting with dental care,
+        expanding into calming solutions, and delivering the cleanest chews on the market.
+        Human-grade. Microbiome-tested. No compromises.
+      </p>
+      <span class="hero-badge">Not a pet brand. A health brand.</span>
+    </div>
+  </section>
+
+  <!-- ── Positioning ── -->
+  <section class="positioning" id="about">
+    <div class="container">
+      <p class="tagline">
+        "We're not building a pet brand. We're building a health company
+        that happens to start with dogs."
+      </p>
+      <p class="attribution">The Ruppa Thesis, 2026</p>
+    </div>
+  </section>
+
+  <!-- ── Stats ── -->
+  <section>
+    <div class="container">
+      <div class="stats-grid">
+        <div>
+          <div class="stat-number">80%</div>
+          <p class="stat-label">of dogs have dental disease by age 3 — most owners never know</p>
+        </div>
+        <div>
+          <div class="stat-number">$158B</div>
+          <p class="stat-label">U.S. pet market — growing 3x faster than mass-market</p>
+        </div>
+        <div>
+          <div class="stat-number">73%</div>
+          <p class="stat-label">of pet parents pay a premium for health-forward products</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Products ── -->
+  <section id="products">
+    <div class="container">
+      <div class="section-header">
+        <h2>Three systems. One standard.</h2>
+        <p>Every Ruppa product is vet-formulated, third-party tested, and built for the long game.</p>
+      </div>
+
+      <div class="product-grid">
+
+        <!-- Dental -->
+        <div class="product-card">
+          <div class="product-icon">🦷</div>
+          <h3>Dental</h3>
+          <p class="product-subtitle">Clean Mouth</p>
+          <p class="product-desc">
+            A complete oral health system that works daily — not just when you remember to brush.
+          </p>
+          <ul class="product-items">
+            <li>Water Additive — tasteless daily drops</li>
+            <li>Dental Chews — enzymatic, functional</li>
+            <li>Enzymatic Gel — clinical-grade care</li>
+          </ul>
+        </div>
+
+        <!-- Calming -->
+        <div class="product-card">
+          <div class="product-icon">😌</div>
+          <h3>Calm</h3>
+          <p class="product-subtitle">Clear Mind</p>
+          <p class="product-desc">
+            Anxiety is the #1 undiagnosed condition in dogs. We treat it like a health issue — because it is.
+          </p>
+          <ul class="product-items">
+            <li>Calming Soft Chews — daily support</li>
+            <li>CBD Tincture — pharmaceutical-grade</li>
+            <li>Calming Powder — food topper</li>
+          </ul>
+        </div>
+
+        <!-- Premium Chews -->
+        <div class="product-card">
+          <div class="product-icon">🥩</div>
+          <h3>Chew</h3>
+          <p class="product-subtitle">Wild at Heart</p>
+          <p class="product-desc">
+            Single-ingredient, grass-fed, ethically sourced. The Epic Provisions of dog chews.
+          </p>
+          <ul class="product-items">
+            <li>Grass-Fed Bully Sticks</li>
+            <li>Natural Collagen Sticks</li>
+            <li>Himalayan Yak Cheese Chews</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Moat ── -->
+  <section>
+    <div class="container">
+      <div class="section-header">
+        <h2>Built different.</h2>
+        <p>Most pet brands compete on "natural ingredients" and cute packaging. We compete on outcomes.</p>
+      </div>
+
+      <div class="moat-grid">
+        <div class="moat-item">
+          <div class="moat-number">01</div>
+          <div>
+            <h4>Clinical credibility</h4>
+            <p>Every product backed by veterinary nutrition science — not marketing claims. Sourcing is documented. Results are published.</p>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-number">02</div>
+          <div>
+            <h4>Radical transparency</h4>
+            <p>Third-party tested. Full ingredient sourcing. No proprietary blends hiding inactive doses. You know exactly what you're giving your dog.</p>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-number">03</div>
+          <div>
+            <h4>Design-forward</h4>
+            <p>Packaging that looks like it belongs in a human wellness store. Not the pet aisle. Not the vet's office. Yours.</p>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-number">04</div>
+          <div>
+            <h4>Direct tone</h4>
+            <p>No cutesy dog puns. No baby talk. This is serious health for the animal you love most.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA / Waitlist ── -->
+  <section class="cta" id="waitlist">
+    <div class="container">
+      <h2>Ruppa is coming.</h2>
+      <p>
+        We're building the full-stack health brand for dogs. Dental launches first.
+        Be the first to know when we go live.
+      </p>
+      <form class="signup-form" onsubmit="event.preventDefault(); alert('Thanks — we'll be in touch when Ruppa launches.'); this.reset();">
+        <input type="email" placeholder="Your email address" required>
+        <button type="submit">Join Waitlist</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Footer ── -->
+  <footer>
+    <div class="container">
+      <p class="footer-brand">RUPPA</p>
+      <p class="footer-tagline">Not a pet brand. A health brand.</p>
+      <p class="footer-bottom">© 2026 Ruppa Health, Inc. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
