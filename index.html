@@ -7,24 +7,28 @@
   <meta name="description" content="Ruppa is building the future of canine health — dental, calming, and premium chews. Not a pet brand. A health brand.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
       --green: #1B4D3E;
-      --green-light: #2A6B56;
+      --green-mid: #236B53;
+      --green-light: #2E8B6E;
+      --green-bright: #38A37E;
       --cream: #F5F0E8;
       --cream-dark: #E8E0D4;
+      --cream-light: #FAF7F2;
       --white: #FFFFFF;
       --text: #1A1A1A;
       --text-muted: #5C5C5C;
+      --text-light: #8A8A8A;
       --border: #D4CFC7;
+      --accent: #C8963E;
+      --gold: #B8862D;
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: 'Inter', -apple-system, sans-serif;
@@ -32,490 +36,553 @@
       color: var(--text);
       line-height: 1.6;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     /* ── Typography ── */
-    .serif { font-family: 'Playfair Display', Georgia, serif; }
-    h1, h2, h3, .stat-number, .tagline, .nav-brand { font-family: 'Playfair Display', Georgia, serif; }
+    .serif, h1, h2, h3, h4, .nav-brand, .stat-number, .tagline, .moat-number, .phase-title {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
 
     h1 {
-      font-size: clamp(2.5rem, 6vw, 5rem);
+      font-size: clamp(2.6rem, 6vw, 5.2rem);
       font-weight: 600;
-      line-height: 1.1;
+      line-height: 1.08;
       letter-spacing: -0.02em;
     }
-
     h2 {
-      font-size: clamp(1.8rem, 4vw, 3rem);
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
       font-weight: 600;
-      line-height: 1.2;
+      line-height: 1.15;
       letter-spacing: -0.01em;
     }
-
     h3 {
-      font-size: 1.4rem;
+      font-size: 1.5rem;
       font-weight: 600;
-      line-height: 1.3;
+      line-height: 1.25;
     }
 
     /* ── Layout ── */
     .container {
-      max-width: 1100px;
+      max-width: 1120px;
       margin: 0 auto;
       padding: 0 2rem;
     }
+    section { padding: 7rem 0; position: relative; }
 
-    section {
-      padding: 6rem 0;
-    }
-
-    /* ── Nav ── */
+    /* ── NAV ── */
     nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      z-index: 100;
-      padding: 1.25rem 0;
-      background: rgba(245, 240, 232, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(27, 77, 62, 0.08);
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      padding: 1.2rem 0;
+      background: rgba(245, 240, 232, 0.88);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(27, 77, 62, 0.06);
+      transition: all 0.3s ease;
     }
-
-    nav .container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    nav.scrolled {
+      padding: 0.8rem 0;
+      box-shadow: 0 1px 20px rgba(27, 77, 62, 0.06);
     }
+    nav .container { display: flex; justify-content: space-between; align-items: center; }
 
     .nav-brand {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--green);
-      letter-spacing: 0.04em;
-      text-decoration: none;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav-links a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-size: 0.9rem;
-      font-weight: 400;
-      letter-spacing: 0.02em;
+      font-size: 1.6rem; font-weight: 700; color: var(--green);
+      letter-spacing: 0.06em; text-decoration: none;
       transition: color 0.2s;
     }
-
-    .nav-links a:hover { color: var(--green); }
-
-    /* ── Hero ── */
-    .hero {
-      padding-top: 10rem;
-      padding-bottom: 8rem;
-      text-align: center;
+    .nav-brand:hover { color: var(--green-light); }
+    .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--text-muted);
+      font-size: 0.88rem; font-weight: 400; letter-spacing: 0.03em;
+      transition: color 0.2s; position: relative;
     }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 1.5px;
+      background: var(--green); transition: width 0.25s ease;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-links a:hover::after { width: 100%; }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .reveal {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+
+    /* ── HERO ── */
+    .hero {
+      padding-top: 11rem; padding-bottom: 3rem; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; top: -200px; right: -100px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(27,77,62,0.04) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero::after {
+      content: ''; position: absolute; bottom: -100px; left: -150px;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(200,150,62,0.04) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 1; }
 
     .hero-eyebrow {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.75rem;
-      font-weight: 500;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--green);
-      margin-bottom: 1.5rem;
+      font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.22em; text-transform: uppercase; color: var(--accent);
+      margin-bottom: 1.8rem;
     }
-
-    .hero h1 {
-      color: var(--green);
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
+    .hero h1 { color: var(--green); max-width: 850px; margin: 0 auto 1.8rem; }
+    .hero h1 em { font-style: italic; font-weight: 400; }
+    .hero h1 .highlight {
+      position: relative; display: inline-block;
     }
-
-    .hero h1 em {
-      font-style: italic;
-      font-weight: 400;
+    .hero h1 .highlight::after {
+      content: ''; position: absolute; bottom: 4px; left: 0; width: 100%;
+      height: 6px; background: rgba(200,150,62,0.25); z-index: -1;
     }
 
     .hero-subtitle {
-      font-size: 1.15rem;
-      color: var(--text-muted);
-      max-width: 560px;
-      margin: 0 auto 3rem;
-      line-height: 1.7;
+      font-size: 1.15rem; color: var(--text-muted);
+      max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.75;
     }
 
-    .hero-badge {
-      display: inline-block;
-      padding: 0.6rem 1.4rem;
-      border: 1px solid var(--green);
-      color: var(--green);
-      font-size: 0.8rem;
-      font-weight: 500;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      border-radius: 2px;
+    .hero-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; border-radius: 3px;
+      font-family: 'Inter', sans-serif; font-size: 0.9rem; font-weight: 500;
+      letter-spacing: 0.03em; text-decoration: none; cursor: pointer;
+      transition: all 0.25s ease; border: none;
+    }
+    .btn-primary {
+      background: var(--green); color: var(--cream);
+    }
+    .btn-primary:hover {
+      background: var(--green-mid); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(27,77,62,0.2);
+    }
+    .btn-outline {
+      background: transparent; color: var(--green);
+      border: 1.5px solid var(--green);
+    }
+    .btn-outline:hover {
+      background: var(--green); color: var(--cream);
+      transform: translateY(-2px);
     }
 
-    /* ── Positioning ── */
-    .positioning {
-      background: var(--green);
-      color: var(--cream);
-      text-align: center;
-      padding: 5rem 0;
+    /* ── HERO VISUAL ── */
+    .hero-visual {
+      display: flex; justify-content: center; gap: 1.5rem;
+      margin-top: 4rem; flex-wrap: wrap;
     }
-
-    .positioning .tagline {
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-      font-style: italic;
-      font-weight: 400;
-      max-width: 700px;
-      margin: 0 auto 1.5rem;
-      line-height: 1.5;
-    }
-
-    .positioning .attribution {
-      font-family: 'Inter', sans-serif;
-      font-size: 0.85rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: rgba(245, 240, 232, 0.6);
-    }
-
-    /* ── Stats ── */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2rem;
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: clamp(2.5rem, 5vw, 3.5rem);
-      font-weight: 700;
-      color: var(--green);
-      line-height: 1;
-      margin-bottom: 0.5rem;
-    }
-
-    .stat-label {
-      font-size: 0.9rem;
-      color: var(--text-muted);
-      max-width: 220px;
-      margin: 0 auto;
-    }
-
-    /* ── Products ── */
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
-
-    .section-header h2 {
-      color: var(--green);
-      margin-bottom: 0.75rem;
-    }
-
-    .section-header p {
-      color: var(--text-muted);
-      font-size: 1.05rem;
-      max-width: 500px;
-      margin: 0 auto;
-    }
-
-    .product-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 2.5rem;
-    }
-
-    .product-card {
-      background: var(--white);
-      border-radius: 4px;
-      padding: 2.5rem 2rem;
-      border: 1px solid var(--border);
+    .hero-pill {
+      display: flex; align-items: center; gap: 0.6rem;
+      background: var(--white); padding: 0.7rem 1.5rem;
+      border-radius: 50px; border: 1px solid var(--border);
+      font-size: 0.85rem; color: var(--text-muted);
+      box-shadow: 0 2px 12px rgba(0,0,0,0.04);
       transition: transform 0.2s, box-shadow 0.2s;
     }
+    .hero-pill:hover {
+      transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    }
+    .hero-pill-dot {
+      width: 10px; height: 10px; border-radius: 50%; flex-shrink: 0;
+    }
+    .hero-pill-dot.green { background: var(--green-light); }
+    .hero-pill-dot.gold { background: var(--accent); }
+    .hero-pill-dot.teal { background: #5BA4A4; }
 
+    /* ── STATS BAR ── */
+    .stats-bar {
+      background: var(--green); color: var(--cream);
+      padding: 3.5rem 0;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 3rem; text-align: center;
+    }
+    .stat-item { position: relative; }
+    .stat-item:not(:last-child)::after {
+      content: ''; position: absolute; right: -1.5rem; top: 15%; height: 70%;
+      width: 1px; background: rgba(245,240,232,0.12);
+    }
+    .stat-number {
+      font-size: clamp(2.8rem, 5vw, 3.8rem); font-weight: 700;
+      line-height: 1; margin-bottom: 0.6rem;
+    }
+    .stat-label {
+      font-size: 0.9rem; color: rgba(245,240,232,0.65);
+      max-width: 220px; margin: 0 auto; line-height: 1.55;
+    }
+
+    /* ── QUOTE BAND ── */
+    .quote-band {
+      background: var(--cream-dark); text-align: center;
+      padding: 5.5rem 0; position: relative; overflow: hidden;
+    }
+    .quote-band::before {
+      content: '"'; position: absolute; top: -30px; left: 50%; transform: translateX(-50%);
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 16rem; color: rgba(27,77,62,0.04); line-height: 1;
+      pointer-events: none;
+    }
+    .quote-band .container { position: relative; z-index: 1; }
+    .quote-band .tagline {
+      font-size: clamp(1.4rem, 3.2vw, 1.9rem); font-style: italic;
+      font-weight: 400; max-width: 720px; margin: 0 auto 1.2rem;
+      line-height: 1.5; color: var(--text);
+    }
+    .quote-band .attribution {
+      font-size: 0.82rem; letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── SECTION HEADER ── */
+    .section-header { text-align: center; margin-bottom: 4.5rem; }
+    .section-header h2 { color: var(--green); margin-bottom: 0.75rem; }
+    .section-header p { color: var(--text-muted); font-size: 1.05rem; max-width: 520px; margin: 0 auto; }
+    .section-header .section-tag {
+      display: inline-block; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 1rem;
+    }
+
+    /* ── PRODUCT CARDS ── */
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
+
+    .product-card {
+      background: var(--white); border-radius: 6px;
+      padding: 2.8rem 2.2rem; border: 1px solid var(--border);
+      transition: all 0.35s ease; position: relative; overflow: hidden;
+      cursor: default;
+    }
+    .product-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--green), var(--green-light));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s ease;
+    }
+    .product-card:hover::before { transform: scaleX(1); }
     .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 12px 40px rgba(27, 77, 62, 0.08);
+      transform: translateY(-6px);
+      box-shadow: 0 20px 50px rgba(27,77,62,0.1);
+      border-color: var(--cream-dark);
     }
 
     .product-icon {
-      width: 48px;
-      height: 48px;
-      background: var(--cream);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 1.5rem;
-      font-size: 1.3rem;
+      width: 56px; height: 56px; border-radius: 14px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.5rem; font-size: 1.5rem;
+      transition: transform 0.3s ease;
     }
+    .product-card:hover .product-icon { transform: scale(1.08); }
+    .icon-dental { background: #E8F5F0; }
+    .icon-calm { background: #F5EDE8; }
+    .icon-chew { background: #F0EBE0; }
 
-    .product-card h3 {
-      color: var(--green);
-      margin-bottom: 0.5rem;
-    }
-
-    .product-card .product-subtitle {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
+    .product-badge {
+      display: inline-block; font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 0.25rem 0.75rem; border-radius: 50px;
       margin-bottom: 1rem;
     }
+    .badge-dental { background: #E8F5F0; color: var(--green-mid); }
+    .badge-calm { background: #F5EDE8; color: var(--accent); }
+    .badge-chew { background: #F0EBE0; color: #8B6914; }
 
+    .product-card h3 { color: var(--green); margin-bottom: 0.3rem; }
+    .product-card .product-subtitle {
+      font-size: 0.8rem; color: var(--text-light);
+      letter-spacing: 0.05em; margin-bottom: 1rem;
+    }
     .product-card .product-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 1.25rem;
+      font-size: 0.95rem; color: var(--text-muted); line-height: 1.7;
+      margin-bottom: 1.5rem;
     }
-
-    .product-card .product-items {
-      list-style: none;
-      font-size: 0.85rem;
-      color: var(--text);
+    .product-items { list-style: none; border-top: 1px solid var(--cream-dark); padding-top: 1rem; }
+    .product-items li {
+      font-size: 0.85rem; color: var(--text); padding: 0.5rem 0;
+      display: flex; align-items: center; gap: 0.6rem;
     }
-
-    .product-card .product-items li {
-      padding: 0.35rem 0;
-      border-bottom: 1px solid var(--cream-dark);
-    }
-
-    .product-card .product-items li:last-child {
-      border-bottom: none;
-    }
-
-    /* ── Moat ── */
-    .moat-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 3rem;
-    }
-
-    .moat-item {
-      display: flex;
-      gap: 1.25rem;
-    }
-
-    .moat-number {
-      font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--green);
+    .product-items li::before {
+      content: ''; width: 6px; height: 6px; border-radius: 50%;
       flex-shrink: 0;
-      width: 40px;
+    }
+    .product-card:nth-child(1) .product-items li::before { background: var(--green-light); }
+    .product-card:nth-child(2) .product-items li::before { background: var(--accent); }
+    .product-card:nth-child(3) .product-items li::before { background: #8B6914; }
+
+    /* ── PHASES TIMELINE ── */
+    .phases { background: var(--white); }
+    .timeline {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem;
+      position: relative;
+    }
+    .timeline::before {
+      content: ''; position: absolute; top: 28px; left: 12%; right: 12%;
+      height: 2px; background: linear-gradient(90deg, var(--green-light), var(--accent), var(--gold));
+      opacity: 0.3;
+    }
+    .phase-card {
+      text-align: center; position: relative; padding-top: 3.5rem;
+    }
+    .phase-marker {
+      width: 56px; height: 56px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem; position: relative; z-index: 1;
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.2rem; font-weight: 700; color: var(--white);
+      box-shadow: 0 6px 24px rgba(0,0,0,0.12);
+    }
+    .phase-marker.p1 { background: var(--green); }
+    .phase-marker.p2 { background: var(--accent); }
+    .phase-marker.p3 { background: #8B6914; }
+
+    .phase-card h4 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.15rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.3rem;
+    }
+    .phase-label {
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--accent); font-weight: 600; margin-bottom: 1rem;
+    }
+    .phase-card p {
+      font-size: 0.9rem; color: var(--text-muted); line-height: 1.7;
+      max-width: 260px; margin: 0 auto;
     }
 
+    /* ── MOAT GRID ── */
+    .moat-grid {
+      display: grid; grid-template-columns: repeat(2, 1fr);
+      gap: 3.5rem 4rem; max-width: 900px; margin: 0 auto;
+    }
+    .moat-item { display: flex; gap: 1.5rem; }
+    .moat-number {
+      font-size: 2.8rem; font-weight: 700; color: var(--green);
+      line-height: 1; flex-shrink: 0; opacity: 0.7;
+    }
     .moat-item h4 {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--text);
-      margin-bottom: 0.4rem;
+      font-size: 1.2rem; font-weight: 600; color: var(--text);
+      margin-bottom: 0.5rem;
     }
-
     .moat-item p {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-      line-height: 1.7;
+      font-size: 0.93rem; color: var(--text-muted); line-height: 1.7;
+    }
+    .moat-accent {
+      width: 32px; height: 2px; background: var(--accent);
+      margin-bottom: 1rem; border-radius: 1px;
     }
 
     /* ── CTA ── */
     .cta {
-      background: var(--green);
-      color: var(--cream);
-      text-align: center;
-      padding: 6rem 0;
+      background: var(--green); color: var(--cream);
+      text-align: center; padding: 7rem 0; position: relative; overflow: hidden;
     }
-
-    .cta h2 {
-      margin-bottom: 1rem;
+    .cta::before {
+      content: ''; position: absolute; top: -80px; right: -100px;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(56,163,126,0.2) 0%, transparent 70%);
+      border-radius: 50%; pointer-events: none;
     }
-
+    .cta .container { position: relative; z-index: 1; }
+    .cta h2 { margin-bottom: 1rem; }
     .cta p {
-      font-size: 1.1rem;
-      color: rgba(245, 240, 232, 0.75);
-      max-width: 500px;
-      margin: 0 auto 2.5rem;
-      line-height: 1.7;
+      font-size: 1.1rem; color: rgba(245,240,232,0.7);
+      max-width: 500px; margin: 0 auto 2.5rem; line-height: 1.7;
     }
-
     .signup-form {
-      display: flex;
-      gap: 0.75rem;
-      max-width: 440px;
-      margin: 0 auto;
+      display: flex; gap: 0.75rem; max-width: 460px; margin: 0 auto;
     }
-
     .signup-form input {
-      flex: 1;
-      padding: 0.9rem 1.2rem;
-      border: 1px solid rgba(245, 240, 232, 0.3);
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--cream);
-      font-family: 'Inter', sans-serif;
-      font-size: 0.95rem;
-      border-radius: 2px;
-      outline: none;
-      transition: border-color 0.2s;
+      flex: 1; padding: 0.95rem 1.3rem;
+      border: 1.5px solid rgba(245,240,232,0.25);
+      background: rgba(255,255,255,0.06); color: var(--cream);
+      font-family: 'Inter', sans-serif; font-size: 0.95rem;
+      border-radius: 3px; outline: none; transition: all 0.25s;
     }
-
-    .signup-form input::placeholder { color: rgba(245, 240, 232, 0.4); }
-    .signup-form input:focus { border-color: var(--cream); }
-
+    .signup-form input::placeholder { color: rgba(245,240,232,0.35); }
+    .signup-form input:focus {
+      border-color: rgba(245,240,232,0.5);
+      background: rgba(255,255,255,0.1);
+    }
     .signup-form button {
-      padding: 0.9rem 1.8rem;
-      background: var(--cream);
-      color: var(--green);
-      border: none;
-      font-family: 'Inter', sans-serif;
-      font-size: 0.9rem;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      cursor: pointer;
-      border-radius: 2px;
-      transition: background 0.2s;
+      padding: 0.95rem 2rem; background: var(--cream); color: var(--green);
+      border: none; font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      font-weight: 600; letter-spacing: 0.04em; cursor: pointer;
+      border-radius: 3px; transition: all 0.25s;
+    }
+    .signup-form button:hover {
+      background: var(--white);
+      transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    }
+    .cta-trust {
+      margin-top: 1.5rem; font-size: 0.78rem;
+      color: rgba(245,240,232,0.4); letter-spacing: 0.04em;
     }
 
-    .signup-form button:hover { background: var(--white); }
-
-    /* ── Footer ── */
+    /* ── FOOTER ── */
     footer {
-      padding: 3rem 0;
-      text-align: center;
-      border-top: 1px solid var(--border);
+      background: #163D31; color: rgba(245,240,232,0.6);
+      padding: 4rem 0 2.5rem;
     }
-
+    footer .footer-grid {
+      display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 3rem; margin-bottom: 3rem;
+    }
     footer .footer-brand {
       font-family: 'Playfair Display', Georgia, serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: var(--green);
-      margin-bottom: 0.5rem;
+      font-size: 1.3rem; font-weight: 700; color: var(--cream);
+      margin-bottom: 0.6rem; letter-spacing: 0.06em;
     }
-
-    footer .footer-tagline {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-style: italic;
+    footer .footer-desc {
+      font-size: 0.88rem; color: rgba(245,240,232,0.45);
+      line-height: 1.7; max-width: 260px;
     }
-
+    footer h5 {
+      font-family: 'Inter', sans-serif; font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: rgba(245,240,232,0.5); margin-bottom: 1.2rem;
+    }
+    footer ul { list-style: none; }
+    footer ul li { margin-bottom: 0.6rem; }
+    footer ul li a {
+      font-size: 0.88rem; color: rgba(245,240,232,0.5);
+      text-decoration: none; transition: color 0.2s;
+    }
+    footer ul li a:hover { color: var(--cream); }
     footer .footer-bottom {
-      margin-top: 1.5rem;
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      letter-spacing: 0.02em;
+      border-top: 1px solid rgba(245,240,232,0.08);
+      padding-top: 1.8rem; text-align: center;
+      font-size: 0.8rem; color: rgba(245,240,232,0.3);
     }
 
-    /* ── Responsive ── */
+    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
-      section { padding: 4rem 0; }
-      .hero { padding-top: 7rem; padding-bottom: 5rem; }
-
-      .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
-      .product-grid { grid-template-columns: 1fr; }
-      .moat-grid { grid-template-columns: 1fr; }
-
-      .signup-form { flex-direction: column; }
-
+      section { padding: 4.5rem 0; }
+      .hero { padding-top: 8rem; padding-bottom: 2rem; }
       .nav-links { display: none; }
+      .stats-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .stat-item:not(:last-child)::after { display: none; }
+      .product-grid { grid-template-columns: 1fr; }
+      .timeline { grid-template-columns: 1fr; }
+      .timeline::before { display: none; }
+      .moat-grid { grid-template-columns: 1fr; }
+      .signup-form { flex-direction: column; }
+      footer .footer-grid { grid-template-columns: 1fr 1fr; }
     }
-
     @media (min-width: 769px) and (max-width: 1024px) {
       .product-grid { grid-template-columns: repeat(2, 1fr); }
       .product-grid .product-card:last-child {
-        grid-column: 1 / -1;
-        max-width: 400px;
-        justify-self: center;
+        grid-column: 1 / -1; max-width: 440px; justify-self: center;
       }
+      footer .footer-grid { grid-template-columns: 1fr 1fr 1fr; }
     }
   </style>
 </head>
 <body>
 
-  <!-- ── Nav ── -->
-  <nav>
+  <!-- ── NAV ── -->
+  <nav id="navbar">
     <div class="container">
       <a href="#" class="nav-brand">RUPPA</a>
       <ul class="nav-links">
         <li><a href="#products">Products</a></li>
-        <li><a href="#about">About</a></li>
+        <li><a href="#phases">Roadmap</a></li>
+        <li><a href="#moat">Why Ruppa</a></li>
         <li><a href="#waitlist">Waitlist</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ── Hero ── -->
+  <!-- ── HERO ── -->
   <section class="hero" id="home">
     <div class="container">
-      <p class="hero-eyebrow">Now launching</p>
-      <h1>The health brand <em>your dog deserves.</em></h1>
-      <p class="hero-subtitle">
+      <p class="hero-eyebrow reveal">Now launching</p>
+      <h1 class="reveal reveal-delay-1">The health brand <em>your dog <span class="highlight">deserves.</span></em></h1>
+      <p class="hero-subtitle reveal reveal-delay-2">
         Ruppa is building the future of canine health — starting with dental care,
         expanding into calming solutions, and delivering the cleanest chews on the market.
-        Human-grade. Microbiome-tested. No compromises.
       </p>
-      <span class="hero-badge">Not a pet brand. A health brand.</span>
+      <div class="hero-actions reveal reveal-delay-3">
+        <a href="#waitlist" class="btn btn-primary">Join the Waitlist</a>
+        <a href="#products" class="btn btn-outline">See the Products</a>
+      </div>
+      <div class="hero-visual reveal reveal-delay-4">
+        <div class="hero-pill"><span class="hero-pill-dot green"></span> Dental System</div>
+        <div class="hero-pill"><span class="hero-pill-dot gold"></span> Calm System</div>
+        <div class="hero-pill"><span class="hero-pill-dot teal"></span> Chew System</div>
+      </div>
     </div>
   </section>
 
-  <!-- ── Positioning ── -->
-  <section class="positioning" id="about">
-    <div class="container">
-      <p class="tagline">
-        "We're not building a pet brand. We're building a health company
-        that happens to start with dogs."
-      </p>
-      <p class="attribution">The Ruppa Thesis, 2026</p>
-    </div>
-  </section>
-
-  <!-- ── Stats ── -->
-  <section>
+  <!-- ── STATS ── -->
+  <section class="stats-bar">
     <div class="container">
       <div class="stats-grid">
-        <div>
-          <div class="stat-number">80%</div>
+        <div class="stat-item reveal">
+          <div class="stat-number" data-count="80" data-suffix="%">0%</div>
           <p class="stat-label">of dogs have dental disease by age 3 — most owners never know</p>
         </div>
-        <div>
-          <div class="stat-number">$158B</div>
+        <div class="stat-item reveal reveal-delay-1">
+          <div class="stat-number" data-count="158" data-suffix="B" data-prefix="$">$0B</div>
           <p class="stat-label">U.S. pet market — growing 3x faster than mass-market</p>
         </div>
-        <div>
-          <div class="stat-number">73%</div>
+        <div class="stat-item reveal reveal-delay-2">
+          <div class="stat-number" data-count="73" data-suffix="%">0%</div>
           <p class="stat-label">of pet parents pay a premium for health-forward products</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── Products ── -->
+  <!-- ── QUOTE ── -->
+  <section class="quote-band">
+    <div class="container">
+      <p class="tagline reveal">
+        "We're not building a pet brand. We're building a health company
+        that happens to start with dogs."
+      </p>
+      <p class="attribution reveal reveal-delay-1">The Ruppa Thesis, 2026</p>
+    </div>
+  </section>
+
+  <!-- ── PRODUCTS ── -->
   <section id="products">
     <div class="container">
       <div class="section-header">
-        <h2>Three systems. One standard.</h2>
-        <p>Every Ruppa product is vet-formulated, third-party tested, and built for the long game.</p>
+        <span class="section-tag reveal">Products</span>
+        <h2 class="reveal reveal-delay-1">Three systems. One standard.</h2>
+        <p class="reveal reveal-delay-2">Every Ruppa product is vet-formulated, third-party tested, and built for the long game. No fillers. No compromises.</p>
       </div>
 
       <div class="product-grid">
-
         <!-- Dental -->
-        <div class="product-card">
-          <div class="product-icon">🦷</div>
+        <div class="product-card reveal">
+          <div class="product-icon icon-dental">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#1B4D3E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 5C8 2 4 5 4 9c0 5 3 8 5 10h2l1-3h2l1 3h2c2-2 5-5 5-10 0-4-4-7-8-4z"/>
+              <path d="M9 12h6"/>
+              <path d="M8 16h8"/>
+            </svg>
+          </div>
+          <span class="product-badge badge-dental">Launching First</span>
           <h3>Dental</h3>
           <p class="product-subtitle">Clean Mouth</p>
           <p class="product-desc">
-            A complete oral health system that works daily — not just when you remember to brush.
+            A complete oral health system that works daily — not just when you remember to brush. Built around the stat that 80% of dogs have dental disease by age 3.
           </p>
           <ul class="product-items">
             <li>Water Additive — tasteless daily drops</li>
@@ -525,27 +592,41 @@
         </div>
 
         <!-- Calming -->
-        <div class="product-card">
-          <div class="product-icon">😌</div>
+        <div class="product-card reveal reveal-delay-2">
+          <div class="product-icon icon-calm">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#C8963E" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              <path d="M9 9h.01M15 9h.01"/>
+            </svg>
+          </div>
+          <span class="product-badge badge-calm">Phase 2</span>
           <h3>Calm</h3>
           <p class="product-subtitle">Clear Mind</p>
           <p class="product-desc">
-            Anxiety is the #1 undiagnosed condition in dogs. We treat it like a health issue — because it is.
+            Anxiety is the #1 undiagnosed condition in dogs. We treat it like a health issue — because it is. Non-CBD and CBD options, all third-party tested.
           </p>
           <ul class="product-items">
             <li>Calming Soft Chews — daily support</li>
             <li>CBD Tincture — pharmaceutical-grade</li>
-            <li>Calming Powder — food topper</li>
+            <li>Calming Powder — easy food topper</li>
           </ul>
         </div>
 
         <!-- Premium Chews -->
-        <div class="product-card">
-          <div class="product-icon">🥩</div>
+        <div class="product-card reveal reveal-delay-3">
+          <div class="product-icon icon-chew">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#8B6914" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 8c0-2 2-4 4-4h6c2 0 4 2 2 5-1 2-3 5-2 8"/>
+              <path d="M8 12h10"/>
+              <path d="M4 16c-1 2 0 4 2 4s3-2 2-4"/>
+            </svg>
+          </div>
+          <span class="product-badge badge-chew">Available Now</span>
           <h3>Chew</h3>
           <p class="product-subtitle">Wild at Heart</p>
           <p class="product-desc">
-            Single-ingredient, grass-fed, ethically sourced. The Epic Provisions of dog chews.
+            Single-ingredient, grass-fed, ethically sourced. The Epic Provisions of dog chews. No fillers, no rawhide, no mystery — just real food.
           </p>
           <ul class="product-items">
             <li>Grass-Fed Bully Sticks</li>
@@ -553,75 +634,181 @@
             <li>Himalayan Yak Cheese Chews</li>
           </ul>
         </div>
-
       </div>
     </div>
   </section>
 
-  <!-- ── Moat ── -->
-  <section>
+  <!-- ── PHASES ── -->
+  <section class="phases" id="phases">
     <div class="container">
       <div class="section-header">
-        <h2>Built different.</h2>
-        <p>Most pet brands compete on "natural ingredients" and cute packaging. We compete on outcomes.</p>
+        <span class="section-tag reveal">Roadmap</span>
+        <h2 class="reveal reveal-delay-1">Where we're headed</h2>
+        <p class="reveal reveal-delay-2">Three phases. One platform. Each phase expands what Ruppa can do for your dog.</p>
+      </div>
+      <div class="timeline">
+        <div class="phase-card reveal">
+          <div class="phase-marker p1">1</div>
+          <h4>Core Systems</h4>
+          <p class="phase-label">Launching 2026</p>
+          <p>Dental, Calming, and Premium Chews — the three product systems that form the foundation of canine health.</p>
+        </div>
+        <div class="phase-card reveal reveal-delay-2">
+          <div class="phase-marker p2">2</div>
+          <h4>Functional Supplements</h4>
+          <p class="phase-label">Coming 2027</p>
+          <p>Joint, gut, cognitive, and coat support — targeted formulas backed by veterinary science.</p>
+        </div>
+        <div class="phase-card reveal reveal-delay-3">
+          <div class="phase-marker p3">3</div>
+          <h4>Health Monitoring</h4>
+          <p class="phase-label">Coming 2028</p>
+          <p>At-home testing, health scoring, and recommendations that evolve as your dog ages.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── MOAT ── -->
+  <section id="moat">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag reveal">Why Ruppa</span>
+        <h2 class="reveal reveal-delay-1">Built different.</h2>
+        <p class="reveal reveal-delay-2">Most pet brands compete on "natural ingredients" and cute packaging. We compete on outcomes.</p>
       </div>
 
       <div class="moat-grid">
-        <div class="moat-item">
+        <div class="moat-item reveal">
           <div class="moat-number">01</div>
           <div>
+            <div class="moat-accent"></div>
             <h4>Clinical credibility</h4>
-            <p>Every product backed by veterinary nutrition science — not marketing claims. Sourcing is documented. Results are published.</p>
+            <p>Every product backed by veterinary nutrition science — not marketing claims. Our sourcing is documented. Our results are published.</p>
           </div>
         </div>
-        <div class="moat-item">
+        <div class="moat-item reveal reveal-delay-1">
           <div class="moat-number">02</div>
           <div>
+            <div class="moat-accent"></div>
             <h4>Radical transparency</h4>
             <p>Third-party tested. Full ingredient sourcing. No proprietary blends hiding inactive doses. You know exactly what you're giving your dog.</p>
           </div>
         </div>
-        <div class="moat-item">
+        <div class="moat-item reveal reveal-delay-2">
           <div class="moat-number">03</div>
           <div>
+            <div class="moat-accent"></div>
             <h4>Design-forward</h4>
             <p>Packaging that looks like it belongs in a human wellness store. Not the pet aisle. Not the vet's office. Yours.</p>
           </div>
         </div>
-        <div class="moat-item">
+        <div class="moat-item reveal reveal-delay-3">
           <div class="moat-number">04</div>
           <div>
+            <div class="moat-accent"></div>
             <h4>Direct tone</h4>
-            <p>No cutesy dog puns. No baby talk. This is serious health for the animal you love most.</p>
+            <p>No cutesy dog puns. No baby talk. This is serious health for the animal you love most. If it wouldn't pass in a human pharmacy, it doesn't ship.</p>
           </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ── CTA / Waitlist ── -->
+  <!-- ── CTA ── -->
   <section class="cta" id="waitlist">
     <div class="container">
-      <h2>Ruppa is coming.</h2>
-      <p>
-        We're building the full-stack health brand for dogs. Dental launches first.
-        Be the first to know when we go live.
+      <h2 class="reveal">Ruppa is coming.</h2>
+      <p class="reveal reveal-delay-1">
+        Dental launches first. Be the first to know when we go live — and get early access pricing.
       </p>
-      <form class="signup-form" onsubmit="event.preventDefault(); alert('Thanks — we'll be in touch when Ruppa launches.'); this.reset();">
+      <form class="signup-form reveal reveal-delay-2" onsubmit="event.preventDefault(); const btn=this.querySelector('button'); btn.textContent='You're in!'; btn.style.background='var(--accent)'; this.querySelector('input').value=''; setTimeout(()=>{btn.textContent='Join Waitlist'; btn.style.background='var(--cream)';}, 3000);">
         <input type="email" placeholder="Your email address" required>
         <button type="submit">Join Waitlist</button>
       </form>
+      <p class="cta-trust reveal reveal-delay-3">No spam. Just product updates and launch news.</p>
     </div>
   </section>
 
-  <!-- ── Footer ── -->
+  <!-- ── FOOTER ── -->
   <footer>
     <div class="container">
-      <p class="footer-brand">RUPPA</p>
-      <p class="footer-tagline">Not a pet brand. A health brand.</p>
-      <p class="footer-bottom">© 2026 Ruppa Health, Inc. All rights reserved.</p>
+      <div class="footer-grid">
+        <div>
+          <p class="footer-brand">RUPPA</p>
+          <p class="footer-desc">The health brand dogs deserve. Human-grade. Microbiome-tested. No compromises.</p>
+        </div>
+        <div>
+          <h5>Products</h5>
+          <ul>
+            <li><a href="#">Dental System</a></li>
+            <li><a href="#">Calm System</a></li>
+            <li><a href="#">Chew System</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Company</h5>
+          <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Mission</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5>Legal</h5>
+          <ul>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Lab Results</a></li>
+          </ul>
+        </div>
+      </div>
+      <p class="footer-bottom">© 2026 Ruppa Health, Inc. All rights reserved. Not a pet brand. A health brand.</p>
     </div>
   </footer>
 
+  <!-- ── SCRIPTS ── -->
+  <script>
+    // Scroll reveal animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Navbar scroll effect
+    window.addEventListener('scroll', () => {
+      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Counter animation for stats
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = parseInt(el.dataset.count);
+        const prefix = el.dataset.prefix || '';
+        const suffix = el.dataset.suffix || '';
+        const duration = 1800;
+        const start = performance.now();
+
+        function animate(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          // Ease out cubic
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = Math.round(eased * target);
+          el.textContent = prefix + current + suffix;
+          if (progress < 1) requestAnimationFrame(animate);
+        }
+        requestAnimationFrame(animate);
+        counterObserver.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.stat-number[data-count]').forEach(el => counterObserver.observe(el));
+  </script>
 </body>
 </html>
